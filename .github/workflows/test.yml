@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  MIX_ENV: test
+
+jobs:
+  test:
+    name: mix tests
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgis/postgis:18-3.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: waypoint_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 2s
+          --health-timeout 2s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          version-file: .tool-versions
+          version-type: strict
+
+      - name: Restore deps cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-${{ hashFiles('mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Run tests
+        run: mix test --warnings-as-errors

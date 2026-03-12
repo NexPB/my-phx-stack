@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: waypoint_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql 
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.me
+      PGADMIN_DEFAULT_PASSWORD: LocalSecret
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./docker/pgadmin-servers.json:/pgadmin4/servers.json
+
+volumes:
+  postgres:
+  pgadmin:

@@ -1,0 +1,48 @@
+name: Precommit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  MIX_ENV: test
+
+jobs:
+  check:
+    name: compile, format & credo
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          version-file: .tool-versions
+          version-type: strict
+
+      - name: Restore deps cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-${{ hashFiles('mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-
+
+      - name: Check lockfile is up to date
+        run: mix deps.get --check-locked
+
+      - name: Check unused deps
+        run: mix deps.unlock --unused && git diff --exit-code mix.lock
+
+      - name: Compile (warnings as errors)
+        run: mix compile --warnings-as-errors
+
+      - name: Check formatting
+        run: mix format --check-formatted
+
+      - name: Credo
+        run: mix credo --strict
