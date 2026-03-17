@@ -48,7 +48,7 @@ defmodule Waypoint.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.1.0"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:vite_phx, git: "https://github.com/NexPB/vite_phx.git", ref: "f116268"},
+      {:vite_phx, git: "https://github.com/NexPB/vite_phx.git", tag: "1.0.0"},
       {:inertia, "~> 2.6"},
       {:swoosh, "~> 1.16"},
       {:req, "~> 0.5"},
