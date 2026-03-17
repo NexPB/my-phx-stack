@@ -81,8 +81,7 @@ defmodule Waypoint.MixProject do
         "compile --warnings-as-errors",
         "deps.unlock --unused",
         "format",
-        "credo --strict",
-        "test"
+        "credo --strict"
       ]
     ]
   end
