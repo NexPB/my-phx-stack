@@ -5,8 +5,8 @@ A production-ready Phoenix + Inertia.js + React template with batteries included
 ## What's included
 
 | Feature | Details |
-|---|---|
-| **Inertia.js** | Server-driven SPA — React pages rendered from Phoenix controllers |
+| ------- | ------- |
+| **Inertia.js** | Server-driven SPA — React (with compiler) pages rendered from Phoenix controllers |
 | **shadcn/ui** | Copy-paste component library — `assets/src/components/ui/` |
 | **Vite 7** | Fast dev server with HMR, production builds with hashing |
 | **Tailwind CSS v4** | Utility-first CSS via `@tailwindcss/vite` plugin |

@@ -60,7 +60,11 @@ export default defineConfig({
   plugins: [
     killPortPlugin(),
     phoenixVitePlugin({ pattern: /\\.(ex|heex)$/ }),
-    react(),
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }),
     tailwindcss(),
   ],
   resolve: {
