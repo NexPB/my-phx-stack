@@ -1,0 +1,55 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": ["mix", "npm", "mise"],
+  "labels": ["dependencies"],
+  "schedule": ["before 9am on Monday"],
+  "timezone": "Asia/Tokyo",
+  "dependencyDashboard": true,
+  "gitAuthor": "NexPB <lorenzo@nexp.be>",
+  "packageRules": [
+    {
+      "description": "Use replace strategy for all Mix deps (mix.lock has exact versions)",
+      "matchManagers": ["mix"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "description": "Group all Mix minor and patch updates into one weekly PR",
+      "matchManagers": ["mix"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Elixir dependencies (minor & patch)"
+    },
+    {
+      "description": "Keep Mix major updates separate, one PR each",
+      "matchManagers": ["mix"],
+      "matchUpdateTypes": ["major"]
+    },
+
+    {
+      "description": "Group all JS minor and patch updates into one weekly PR",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "JS dependencies (minor & patch)"
+    },
+    {
+      "description": "Keep JS major updates separate",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "description": "Group mise tool version updates together",
+      "matchManagers": ["mise"],
+      "groupName": "Tool versions (mise)"
+    },
+    {
+      "description": "Track vite_phx git dep via github-tags on NexPB/vite_phx",
+      "matchManagers": ["mix"],
+      "matchDepNames": ["vite_phx"],
+      "overrideDatasource": "github-tags",
+      "overridePackageName": "NexPB/vite_phx",
+      "versioning": "git"
+    }
+  ]
+}
