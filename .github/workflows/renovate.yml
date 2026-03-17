@@ -1,0 +1,54 @@
+name: Renovate
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run at 23:00 UTC Sunday = 08:00 JST Monday — matches renovate.json schedule
+    - cron: "0 23 * * 0"
+  push:
+    branches: [main]
+    paths:
+      - "renovate.json"
+      - ".github/workflows/renovate.yml"
+
+concurrency:
+  group: renovate
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check for dependency updates
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Check for RENOVATE_TOKEN secret
+        id: token-check
+        env:
+          TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        run: |
+          # Mask the token value before any further output to prevent accidental leakage
+          [ -n "$TOKEN" ] && echo "::add-mask::$TOKEN"
+          if [ -z "$TOKEN" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::RENOVATE_TOKEN secret is not configured - see https://docs.renovatebot.com/getting-started/running/#githubcom-token to create a PAT."
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::RENOVATE_TOKEN secret is configured - you can remove this check if desired."
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.token-check.outputs.available == 'true'
+
+      - uses: renovatebot/github-action@v46.1.5
+        if: steps.token-check.outputs.available == 'true'
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # Set a custom author name and email for Renovate's commits
+          RENOVATE_GIT_AUTHOR: "NexPB <lorenzo@nexp.be>"

@@ -13,7 +13,7 @@ A production-ready Phoenix + Inertia.js + React template with batteries included
 | **ExMachina** | Test factories in `test/support/factory.ex` |
 | **Swoosh** | Email with local dev mailbox at `/dev/mailbox` |
 | **Phoenix LiveDashboard** | Application insights at `/dev/dashboard` |
-| **GitHub Actions** | CI workflow for tests and linting |
+| **GitHub Actions** | CI workflow for tests, linting and upkeep |
 | **Docker Compose** | PostgreSQL + pgAdmin for local development |
 | **AI-ready** | `AGENTS.md` + `CLAUDE.md` with full project context for AI assistants |
 
@@ -29,7 +29,7 @@ mix phx.server
 # Run tests
 mix test
 
-# Run full precommit checks (compile + format + credo + tests)
+# Run full precommit checks (compile + format + credo)
 mix precommit
 ```
 
@@ -60,6 +60,7 @@ assets/
 config/                     # Phoenix configuration
 test/                       # ExUnit tests + support
 priv/repo/migrations/       # Ecto migrations
+.github/workflows           # CI (GitHub actions)
 ```
 
 ## Learn more
