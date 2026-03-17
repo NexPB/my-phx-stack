@@ -19,7 +19,7 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
-          version-file: .tool-versions
+          version-file: mise.toml
           version-type: strict
 
       - name: Restore deps cache
@@ -28,9 +28,9 @@ jobs:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-${{ hashFiles('mix.lock') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('mise.toml') }}-${{ hashFiles('mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-
+            ${{ runner.os }}-mix-${{ hashFiles('mise.toml') }}-
 
       - name: Check lockfile is up to date
         run: mix deps.get --check-locked
