@@ -1,0 +1,25 @@
+.github/workflows/renovate.yml
+  s_df435bdaaa6441::t_01f8f538ff72ea 44,47
+.github/workflows/precommit.yml
+  s_df435bdaaa6441::t_346b50ddd4290c 17,20
+  s_df435bdaaa6441::t_f86781ce3b550c 26
+.github/workflows/test.yml
+  s_df435bdaaa6441::t_7dd602dad77ec3 32,35
+  s_df435bdaaa6441::t_ed9d6deecb78ce 41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "583ba7ad4867f187bcdf0cb692efd7f7afe9f6a2",
+  "prompts": {},
+  "sessions": {
+    "s_df435bdaaa6441": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9c917eea-57e2-4307-90e0-cb9712a35d53",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "NexPB <lorenzo@nexp.be>"
+    }
+  }
+}
