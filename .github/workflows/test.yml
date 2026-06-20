@@ -15,7 +15,7 @@ jobs:
 
     services:
       db:
-        image: postgis/postgis:18-3.6
+        image: postgres:18
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: secret
