@@ -1,0 +1,19 @@
+.github/workflows/test.yml
+  s_d7444bdf0f0758::t_cf6830912171c8 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "9519fa1bb44a29067ef65d035c21b3bda015d2a5",
+  "prompts": {},
+  "sessions": {
+    "s_d7444bdf0f0758": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3afe1e82-9006-481a-af5d-0c57051f36de",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "NexPB <lorenzo@nexp.be>"
+    }
+  }
+}
