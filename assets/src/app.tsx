@@ -2,8 +2,11 @@ import type { ComponentType } from 'react'
 import { createInertiaApp } from '@inertiajs/react'
 
 import { createRoot } from 'react-dom/client'
+import { installHttpHeaderInterceptor } from './lib/http'
 import '../css/app.css'
 import './theme'
+
+installHttpHeaderInterceptor()
 
 createInertiaApp({
   resolve: (name: string) => {
