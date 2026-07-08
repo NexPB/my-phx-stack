@@ -1,5 +1,5 @@
 [tools]
-erlang = "28.5"
+erlang = "29.0.3"
 elixir = "1.20.2"
 node = "24.18.0"
-pnpm = "10.34.4"
+pnpm = "11.10.0"
