@@ -1,0 +1,23 @@
+assets/package.json
+  s_1d0b78368834eb::t_02dd0f52b80da3 19,29-30,41
+mix.exs
+  s_1d0b78368834eb::t_02dd0f52b80da3 49,54
+mix.lock
+  s_1d0b78368834eb::t_9f265e9cf410ff 2,5-6,8-9,13,15-16,18,20,23-24,29,32,35-36,38-39,42,45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "4bce012d67543d1b8968ad8233c0cfabd9ea67e3",
+  "prompts": {},
+  "sessions": {
+    "s_1d0b78368834eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "17b0071c-4589-46e6-b97b-185a136112fd",
+        "model": "claude-fable-5"
+      },
+      "human_author": "NexPB <lorenzo@nexp.be>"
+    }
+  }
+}
