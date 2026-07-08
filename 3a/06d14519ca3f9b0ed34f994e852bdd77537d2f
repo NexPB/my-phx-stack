@@ -1,0 +1,21 @@
+mix.exs
+  s_1d0b78368834eb::t_c4f30f6a2e2bb4 52
+mix.lock
+  s_1d0b78368834eb::t_0f392b56233969 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "3a06d14519ca3f9b0ed34f994e852bdd77537d2f",
+  "prompts": {},
+  "sessions": {
+    "s_1d0b78368834eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "17b0071c-4589-46e6-b97b-185a136112fd",
+        "model": "claude-fable-5"
+      },
+      "human_author": "NexPB <lorenzo@nexp.be>"
+    }
+  }
+}
