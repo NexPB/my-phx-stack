@@ -73,4 +73,19 @@ test.describe('Demo page navigation', () => {
     // Inertia subsequent navigations are XHR (fetch), not document requests
     expect(requests.length).toBe(0)
   })
+
+  test('Inertia visits carry the Phoenix CSRF token header', async ({
+    page,
+  }) => {
+    await page.goto('/demo/a')
+
+    const inertiaRequest = page.waitForRequest(
+      req => req.url().endsWith('/demo/b') && req.resourceType() !== 'document',
+    )
+
+    await page.getByRole('button', { name: RE_GO_TO_B }).click()
+
+    const request = await inertiaRequest
+    expect(request.headers()['x-csrf-token']).toBeTruthy()
+  })
 })
