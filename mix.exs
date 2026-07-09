@@ -75,7 +75,7 @@ defmodule Waypoint.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["cmd pnpm install"],
-      "assets.build": ["cmd pnpm run build --dir assets"],
+      "assets.build": ["cmd pnpm --dir assets run build"],
       "assets.deploy": ["assets.build", "phx.digest"],
       precommit: [
         "compile --warnings-as-errors",
