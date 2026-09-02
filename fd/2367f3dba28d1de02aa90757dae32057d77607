@@ -1,0 +1,14 @@
+mix.lock
+  h_963ee31fe77864 2,7-8,20,23,26,28-29,31-32,34,37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "fd2367f3dba28d1de02aa90757dae32057d77607",
+  "prompts": {},
+  "humans": {
+    "h_963ee31fe77864": {
+      "author": "NexPB <lorenzo@nexp.be>"
+    }
+  }
+}
