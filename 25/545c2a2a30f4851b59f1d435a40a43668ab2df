@@ -1,0 +1,20 @@
+pnpm-workspace.yaml
+  s_7e03aa79266847::t_560d3fe9419bc3 3-4
+  s_7e03aa79266847::t_c6c394ef22652f 5-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "25545c2a2a30f4851b59f1d435a40a43668ab2df",
+  "prompts": {},
+  "sessions": {
+    "s_7e03aa79266847": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5e6046c9-b523-4e3c-8442-d672699899a4",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "NexPB <1289189+NexPB@users.noreply.github.com>"
+    }
+  }
+}
