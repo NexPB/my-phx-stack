@@ -1,2 +1,7 @@
 packages:
  - 'assets'
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # 2023 security backport, published without provenance after 7.x had it.
+  - 'semver@6.3.1'
