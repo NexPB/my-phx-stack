@@ -1,0 +1,35 @@
+.claude/settings.json
+  s_ba747df35ad06e::t_22e5982a2f74d3 7
+AGENTS.md
+  s_ba747df35ad06e::t_45b1598d2b1bb7 1,5-8,10,12-14,16,18-24,26,28,30-33,35,37,39,41-47,49,51-52
+.claude/skills/update-schema/SKILL.md
+  s_ba747df35ad06e::t_d9eddab32d25df 1-12
+.claude/skills/update-claude-docs/SKILL.md
+  s_ba747df35ad06e::t_10beedac014b45 1-21
+config/config.exs
+  s_ba747df35ad06e::t_e948b9b064de57 12-17
+docs/schema.md
+  s_ba747df35ad06e::t_ea1fc77c33802b 40-42
+  s_ba747df35ad06e::t_451b2af2eb3b93 38-39,43-50
+  s_ba747df35ad06e::t_884d36fe59be97 3-4
+test/support/factory.ex
+  s_ba747df35ad06e::t_5494e46fa57b20 51
+.claude/skills/sync-factories/SKILL.md
+  s_ba747df35ad06e::t_49094f18b50a66 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "62bef58b856487c9cb63136b6b55382f70c67792",
+  "prompts": {},
+  "sessions": {
+    "s_ba747df35ad06e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0206ef07-7a5f-4b29-b713-763a4a0fc4b2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "NexPB <1289189+NexPB@users.noreply.github.com>"
+    }
+  }
+}
