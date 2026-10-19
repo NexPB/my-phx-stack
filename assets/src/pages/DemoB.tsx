@@ -1,6 +1,6 @@
-import { Head, Link } from '@inertiajs/react'
-import { ArrowLeft, CheckCircle2, Server } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Head, Link } from "@inertiajs/react";
+import { ArrowLeft, CheckCircle2, Server } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,11 +8,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from "@/components/ui/card";
 
 interface Props {
-  message?: string
-  timestamp?: string
+  message?: string;
+  timestamp?: string;
 }
 
 export default function DemoB({ message, timestamp }: Props) {
@@ -50,26 +50,21 @@ export default function DemoB({ message, timestamp }: Props) {
                   <span className="text-zinc-400">message:</span>
                   <span className="text-zinc-900 dark:text-zinc-50">
                     &quot;
-                    {message ?? 'Hello from Phoenix!'}
+                    {message ?? "Hello from Phoenix!"}
                     &quot;
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-zinc-400">timestamp:</span>
-                  <span className="text-zinc-600 dark:text-zinc-300">
-                    {timestamp ?? '—'}
-                  </span>
+                  <span className="text-zinc-600 dark:text-zinc-300">{timestamp ?? "—"}</span>
                 </div>
               </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                These values were assigned as props by the Phoenix controller using
-                {' '}
+                These values were assigned as props by the Phoenix controller using{" "}
                 <code className="rounded bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-xs font-mono">
                   assign_prop/3
-                </code>
-                {' '}
-                from
-                {' '}
+                </code>{" "}
+                from{" "}
                 <code className="rounded bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-xs font-mono">
                   Inertia.Controller
                 </code>
@@ -92,5 +87,5 @@ export default function DemoB({ message, timestamp }: Props) {
         </div>
       </div>
     </>
-  )
+  );
 }

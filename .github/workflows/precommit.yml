@@ -46,3 +46,33 @@ jobs:
 
       - name: Credo
         run: mix credo --strict
+
+  frontend:
+    name: vp check & build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: assets
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js and pnpm
+        uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
+        with:
+          install_args: node pnpm
+
+      # Node and pnpm come from mise.toml, so Vite+ must not manage its own.
+      - name: Set up Vite+
+        uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
+        with:
+          node-manager: false
+          package-manager: false
+          cache: true
+
+      - name: Format, lint & type-check
+        run: vp check
+
+      - name: Build
+        run: vp build
