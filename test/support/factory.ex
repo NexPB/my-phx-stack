@@ -48,9 +48,7 @@ defmodule Waypoint.Factory do
   #   def user_factory do
   #     %Waypoint.Accounts.User{
   #       email: sequence(:email, &"user-#{&1}@example.com"),
-  #       name: sequence(:name, &"User #{&1}"),
-  #       inserted_at: DateTime.utc_now() |> DateTime.truncate(:second),
-  #       updated_at: DateTime.utc_now() |> DateTime.truncate(:second)
+  #       name: sequence(:name, &"User #{&1}")
   #     }
   #   end
 end

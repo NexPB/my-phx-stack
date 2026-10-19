@@ -4,6 +4,7 @@
     "allow": [
       "Bash(mix precommit)",
       "Bash(mix compile)",
+      "Bash(mix test)",
       "Bash(mix test *)",
       "Bash(mix format)",
       "Bash(mix credo *)",

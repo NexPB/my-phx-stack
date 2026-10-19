@@ -9,7 +9,12 @@ import Config
 
 config :waypoint,
   ecto_repos: [Waypoint.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [binary_id: true, timestamp_type: :utc_datetime_usec]
+
+config :waypoint, Waypoint.Repo,
+  migration_primary_key: [type: :binary_id, default: {:fragment, "gen_random_uuid()"}],
+  migration_foreign_key: [type: :binary_id],
+  migration_timestamps: [type: :utc_datetime_usec]
 
 # Configure the endpoint
 config :waypoint, WaypointWeb.Endpoint,
