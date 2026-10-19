@@ -2,8 +2,7 @@ import type { HmrContext, UserConfig, ViteDevServer } from "vite-plus";
 import { execSync } from "node:child_process";
 import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
-import babel from "@rolldown/plugin-babel";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
 
 const ORIGIN_DOMAINS = ["http://localhost:4000"];
@@ -60,8 +59,7 @@ export default defineConfig({
   plugins: lazyPlugins(() => [
     killPortPlugin(),
     phoenixVitePlugin({ pattern: /\\.(ex|heex)$/ }),
-    react(),
-    babel({ presets: [reactCompilerPreset()] }),
+    react({ compiler: true }),
     tailwindcss(),
   ]),
   resolve: {
