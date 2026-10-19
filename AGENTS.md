@@ -1,64 +1,52 @@
-This is a web application written using the Phoenix web framework.
+Phoenix 1.8 app that renders React pages through Inertia.js.
 
 ## Stack
 
-- **Backend**: Phoenix 1.8 + Elixir, Ecto/PostgreSQL
-- **Frontend**: Vite+ (`vp`) + Inertia.js + React 19 + shadcn/ui
-- **JS tooling**: Oxlint + Oxfmt + tsgo through `vp check`; config in the root `vite.config.ts`
-- **CSS**: Tailwind CSS v4 (via `@tailwindcss/vite`)
-- **Package manager**: pnpm (lockfile at project root `pnpm-lock.yaml`)
+- Backend: Phoenix 1.8, Ecto, PostgreSQL
+- Frontend: Inertia.js v3, React 19 with the React Compiler, shadcn/ui, Tailwind CSS v4
+- JS tooling: Vite+ (`vp`). `vp check` runs Oxlint, Oxfmt and tsgo. Lint and format config is in the root `vite.config.ts`, build config in `assets/vite.config.ts`
+- Package manager: pnpm workspace; the lockfile is `pnpm-lock.yaml` at the root
 
-## Project guidelines
+## Checks
 
-- Use `mix precommit` alias when you are done with all changes and fix any pending issues — this runs compile, format, `credo --strict`, and `vp check --fix` on `assets/`
-- Fix **all** credo warnings before committing — never disable a check inline without a code comment explaining why
-- Use the already included and available `:req` (`Req`) library for HTTP requests, **avoid** `:httpoison`, `:tesla`, and `:httpc`
+- Run `mix precommit` when you finish. It runs `compile --warnings-as-errors`, `deps.unlock --unused`, `format`, `credo --strict` and `vp check --fix` on `assets/`.
+- `mix precommit` does not run tests. Run `mix test` separately.
+- Fix every credo warning. An inline credo disable needs a comment that says why.
 
-### Inertia.js (controller) guidelines
+## Backend
 
-- Use `render_inertia("ComponentName")` in Phoenix controllers to render a React page
-- Pass data to pages with `assign_prop/3`:
+- Controllers call context modules, never `Repo`.
+- Stream or paginate queries over unbounded collections.
+- Send view-model props to pages, not raw Ecto structs. Preload every association that a prop reads.
+- Keep fields that the code sets (for example `user_id`) out of `cast`.
+- One module per file.
+- Use `Req` for HTTP.
+- `docs/schema.md` documents the tables and the schema conventions. Update it in the same commit as a schema or migration change.
 
-      conn
-      |> assign_prop(:message, "Hello!")
-      |> assign(:page_title, "My Page")
-      |> render_inertia("MyPage")
+## Inertia
 
-- React pages live in `assets/src/pages/`—one file per Inertia component name
-- `import Inertia.Controller` is available in all controllers via the web module (`<app_name>_web.ex`)
+Render a page from a controller with `assign_prop/3` and `render_inertia/2`. `Inertia.Controller` is imported for every controller in `lib/waypoint_web.ex`.
 
-### JS & CSS
+    conn
+    |> assign_prop(:message, "Hello!")
+    |> assign(:page_title, "My Page")
+    |> render_inertia("MyPage")
 
-- **Entry points**: `assets/src/app.tsx` (JS) and `assets/css/app.css` (CSS)—built by Vite+
-- Never use `@apply` in raw CSS
-- Import all JS/CSS vendor dependencies into `app.tsx` or `app.css`
-- **Never** write inline `<script>` tags in templates
+Each component name maps to one file in `assets/src/pages/`.
 
-### UI components
+HEEx is only used in `lib/waypoint_web/components/layouts/root.html.heex`. The `mix phx.gen.*` generators emit HEEx with daisyUI and heroicons, so port their output to an Inertia page.
 
-- Use **shadcn/ui** components from `assets/src/components/ui/`—these are plain TypeScript/React files, not a runtime library
-- Use the `cn()` utility from `assets/src/lib/utils.ts` for conditional class merging
-- Use **lucide-react** for icons (already installed): `import { X } from "lucide-react"`
-- **Do not** use heroicons or daisyUI—they have been removed from this project
-- React 19: `ref` is a plain prop—**never** use `forwardRef`; add `ref?: React.Ref<T>` directly to your props interface
+## Frontend
 
-### UI/UX
+- Entry points: `assets/src/app.tsx` and `assets/css/app.css`. Import vendor JS and CSS there.
+- No `@apply`, and no inline `<script>` tags.
+- Import Vite APIs from `vite-plus`, not `vite`. Lint enforces this.
+- `@/` resolves to `assets/src/`.
+- The React Compiler memoizes, so do not add `useMemo`, `useCallback` or `memo`.
+- Inertia v3 has its own HTTP client. `assets/src/lib/http.ts` attaches the CSRF token to its requests. Use `@inertiajs/react` for server calls.
+- UI: shadcn/ui components in `assets/src/components/ui/` (see the `shadcn` skill), `cn()` from `assets/src/lib/utils.ts`, and icons from `lucide-react`.
 
-- Produce world-class UI with clean typography, spacing, micro-interactions, and smooth transitions
+## Tests
 
-## Common mistakes to avoid
-
-- **Never** use `Repo.all/1` without pagination on unbounded collections—use streams or `Repo.stream/1`
-- **Never** define a module inside another module file
-- **Never** use `IO.puts` or `dbg` in committed code—run `mix credo` to catch this
-- **Never** add a migration that drops a column without a backup plan
-- **Never** call `Repo` directly from Controllers—always go through a context module
-- **Never** pass raw DB structs to templates that need computed fields—build a view model
-
-## Detailed guidelines
-
-See the `docs/` folder for comprehensive rules on each topic:
-
-- [docs/elixir.md](docs/elixir.md) — Elixir, Mix, and testing conventions
-- [docs/phoenix.md](docs/phoenix.md) — Phoenix router, Ecto, and HTML/HEEx rules
-- [docs/schema.md](docs/schema.md) — Database schema and relationships
+- Factories: ExMachina in `test/support/factory.ex`, imported by `DataCase` and `ConnCase`.
+- Start processes with `start_supervised!/1`. Wait on `Process.monitor/1` + `assert_receive`, not `Process.sleep/1`.
