@@ -1,5 +1,8 @@
 {
   "name": "waypoint",
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  }
 }

@@ -1,6 +1,6 @@
-import { Head, Link } from '@inertiajs/react'
-import { ArrowRight, Layers, Zap } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Head, Link } from "@inertiajs/react";
+import { ArrowRight, Layers, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from "@/components/ui/card";
 
 export default function DemoA() {
   return (
@@ -35,32 +35,30 @@ export default function DemoA() {
                 <Layers className="h-5 w-5" />
                 Stack Overview
               </CardTitle>
-              <CardDescription>
-                The technology powering this page
-              </CardDescription>
+              <CardDescription>The technology powering this page</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
                 {[
                   {
-                    label: 'Phoenix',
-                    desc: 'Handles routing and serves the initial HTML',
+                    label: "Phoenix",
+                    desc: "Handles routing and serves the initial HTML",
                   },
                   {
-                    label: 'Inertia.js',
-                    desc: 'Bridges Phoenix controllers with React components',
+                    label: "Inertia.js",
+                    desc: "Bridges Phoenix controllers with React components",
                   },
                   {
-                    label: 'React',
-                    desc: 'Renders interactive UI on the client',
+                    label: "React",
+                    desc: "Renders interactive UI on the client",
                   },
                   {
-                    label: 'Vite',
-                    desc: 'Bundles and serves assets with HMR in dev',
+                    label: "Vite",
+                    desc: "Bundles and serves assets with HMR in dev",
                   },
                   {
-                    label: 'shadcn/ui',
-                    desc: 'Copy-paste UI components with Tailwind',
+                    label: "shadcn/ui",
+                    desc: "Copy-paste UI components with Tailwind",
                   },
                 ].map(({ label, desc }) => (
                   <li key={label} className="flex items-start gap-3">
@@ -68,10 +66,7 @@ export default function DemoA() {
                       <span className="h-2 w-2 rounded-full bg-zinc-900 dark:bg-zinc-50" />
                     </span>
                     <span className="text-sm text-zinc-700 dark:text-zinc-300">
-                      <strong>{label}</strong>
-                      {' '}
-                      —
-                      {desc}
+                      <strong>{label}</strong> —{desc}
                     </span>
                   </li>
                 ))}
@@ -93,5 +88,5 @@ export default function DemoA() {
         </div>
       </div>
     </>
-  )
+  );
 }

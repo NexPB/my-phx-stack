@@ -81,7 +81,8 @@ defmodule Waypoint.MixProject do
         "compile --warnings-as-errors",
         "deps.unlock --unused",
         "format",
-        "credo --strict"
+        "credo --strict",
+        "cmd pnpm --dir assets exec vp check --fix"
       ]
     ]
   end

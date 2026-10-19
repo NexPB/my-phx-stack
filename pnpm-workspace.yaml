@@ -1,7 +1,17 @@
 packages:
- - 'assets'
+  - "assets"
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
   # 2023 security backport, published without provenance after 7.x had it.
-  - 'semver@6.3.1'
+  - "semver@6.3.1"
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.3.0
+  vite-plus: 1.3.0
+overrides:
+  vite@*: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"

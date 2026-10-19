@@ -3,13 +3,14 @@ This is a web application written using the Phoenix web framework.
 ## Stack
 
 - **Backend**: Phoenix 1.8 + Elixir, Ecto/PostgreSQL
-- **Frontend**: Vite 7 + Inertia.js + React 19 + shadcn/ui
+- **Frontend**: Vite+ (`vp`) + Inertia.js + React 19 + shadcn/ui
+- **JS tooling**: Oxlint + Oxfmt + tsgo through `vp check`; config in the root `vite.config.ts`
 - **CSS**: Tailwind CSS v4 (via `@tailwindcss/vite`)
 - **Package manager**: pnpm (lockfile at project root `pnpm-lock.yaml`)
 
 ## Project guidelines
 
-- Use `mix precommit` alias when you are done with all changes and fix any pending issues — this runs compile, format, `credo --strict`, and tests
+- Use `mix precommit` alias when you are done with all changes and fix any pending issues — this runs compile, format, `credo --strict`, and `vp check --fix` on `assets/`
 - Fix **all** credo warnings before committing — never disable a check inline without a code comment explaining why
 - Use the already included and available `:req` (`Req`) library for HTTP requests, **avoid** `:httpoison`, `:tesla`, and `:httpc`
 
@@ -28,7 +29,7 @@ This is a web application written using the Phoenix web framework.
 
 ### JS & CSS
 
-- **Entry points**: `assets/src/app.tsx` (JS) and `assets/css/app.css` (CSS)—built by Vite 7
+- **Entry points**: `assets/src/app.tsx` (JS) and `assets/css/app.css` (CSS)—built by Vite+
 - Never use `@apply` in raw CSS
 - Import all JS/CSS vendor dependencies into `app.tsx` or `app.css`
 - **Never** write inline `<script>` tags in templates
