@@ -1,0 +1,21 @@
+mix.exs
+  s_4c19770e1440cd::t_1473e8fd4fe47f 52
+mix.lock
+  s_4c19770e1440cd::t_b317b14fa13b06 15,17,20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3dce191229519e14f8d0df362a0e6e370b609168",
+  "prompts": {},
+  "sessions": {
+    "s_4c19770e1440cd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "faa4d0c9-69e6-455d-88ac-8426681d938b",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "NexPB <1289189+NexPB@users.noreply.github.com>"
+    }
+  }
+}
